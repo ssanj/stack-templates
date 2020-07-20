@@ -127,23 +127,33 @@ stack build --fast  --haddock-deps --file-watch
 
 stack ls dependencies | awk -F' ' '{ print $1 }' | xargs -I{} stack unpack {} --to .ctags_srcs
 
-{-# START_FILE scripts/generate-hoogle #-}
+{-# START_FILE scripts/hoogle-generate #-}
 #!/bin/bash
 
 stack hoogle -- generate --local
+
+{-# START_FILE scripts/hoogle-run #-}
+#!/bin/bash
+
+stack hoogle -- server --local --port=8080
 
 {-# START_FILE scripts/haddock #-}
 #!/bin/bash
 
 stack build --fast  --haddock-deps --file-watch --haddock
 
-{-# START_FILE scripts/hoogle #-}
-#!/bin/bash
-
-stack hoogle -- server --local --port=8080
-
 
 {-# START_FILE scripts/run #-}
 #!/bin/bash
 
-stack run
+stack run -- "$@"
+
+{-# START_FILE scripts/run-test #-}
+#!/bin/bash
+
+stack test --fast --haddock-deps --file-watch
+
+{-# START_FILE scripts/run-test-only #-}
+#!/bin/bash
+
+stack test --fast --haddock-deps --file-watch --ta '-p'"$*"''
