@@ -8,4 +8,5 @@ stack new project_name https://raw.githubusercontent.com/ssanj/stack-templates/b
 | Template | Incantation |
 | -------- | ----------- |
 | simple   | https://raw.githubusercontent.com/ssanj/stack-templates/master/simple.hsfiles |
+| terminal   | https://raw.githubusercontent.com/ssanj/stack-templates/master/terminal.hsfiles |
 

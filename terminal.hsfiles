@@ -26,6 +26,26 @@ dependencies:
 library:
   source-dirs: src
 
+dependencies:
+- process
+- text
+- thyme
+- parsec
+- optparse-applicative
+- gitrev
+
+ghc-options:
+- -Werror
+- -Weverything
+- -fprint-potential-instances
+- -fprint-expanded-synonyms
+- -fno-warn-missing-import-lists
+- -fno-warn-all-missed-specialisations
+- -Wno-implicit-prelude
+- -Wno-unsafe
+- -Wno-safe
+- -Wno-type-defaults
+
 executables:
   {{name}}-exe:
     main:                Main.hs
@@ -45,6 +65,15 @@ tests:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
+    - -Werror
+    - -Weverything
+    - -Wno-unsafe
+    - -Wno-safe
+    - -Wno-implicit-prelude
+    - -Wno-missing-import-lists
+    - -Wno-missing-export-lists
+    - -Wno-missing-local-signatures
+
     dependencies:
     - {{name}}
     - tasty
@@ -80,6 +109,7 @@ unit_equality =
   let actual   = 100 :: Int
       expected = 100 :: Int
   in actual @?= expected
+
 
 {-# START_FILE src/Lib.hs #-}
 module Lib
