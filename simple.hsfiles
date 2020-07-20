@@ -142,43 +142,43 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 {{name}}.cabal
 *~
 
-{-# START_FILE scripts/build #-}
+{-# START_FILE .stack-scripts/build #-}
 #!/bin/bash
 
 stack build --fast  --haddock-deps --file-watch
 
-{-# START_FILE scripts/get-sources #-}
+{-# START_FILE .stack-scripts/get-sources #-}
 #!/bin/bash
 
 stack ls dependencies | awk -F' ' '{ print $1 }' | xargs -I{} stack unpack {} --to .ctags_srcs
 
-{-# START_FILE scripts/hoogle-generate #-}
+{-# START_FILE .stack-scripts/hoogle-generate #-}
 #!/bin/bash
 
 stack hoogle -- generate --local
 
-{-# START_FILE scripts/hoogle-run #-}
+{-# START_FILE .stack-scripts/hoogle-run #-}
 #!/bin/bash
 
 stack hoogle -- server --local --port=8080
 
-{-# START_FILE scripts/haddock #-}
+{-# START_FILE .stack-scripts/haddock #-}
 #!/bin/bash
 
 stack build --fast  --haddock-deps --file-watch --haddock
 
 
-{-# START_FILE scripts/run #-}
+{-# START_FILE .stack-scripts/run #-}
 #!/bin/bash
 
 stack run -- "$@"
 
-{-# START_FILE scripts/run-test #-}
+{-# START_FILE .stack-scripts/run-test #-}
 #!/bin/bash
 
 stack test --fast --haddock-deps --file-watch
 
-{-# START_FILE scripts/run-test-only #-}
+{-# START_FILE .stack-scripts/run-test-only #-}
 #!/bin/bash
 
 stack test --fast --haddock-deps --file-watch --ta '-p'"$*"''
